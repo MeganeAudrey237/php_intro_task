@@ -1,3 +1,26 @@
+
+<?php
+include "db.php";
+if (isset($_POST['submit'])){
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $tag = $_POST['tag'];
+    $status = $_POST['status'];
+    $sql = "INSERT INTO `tasks` (`title`,`description`,`tag`,`status`) VALUES ('$title','$description','$tag','$status') ";
+    $result = $conn->query($sql);
+    if($result == TRUE) {
+        echo "issue created successfully";
+        header ('location: index.php');
+      
+    } else{
+        echo "error:" .$sql . "<br>" . $con->connect_error;
+    }
+    $conn->close();
+ 
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,33 +59,36 @@
                 </div>
                 <div class="modal-body">
                     <!-- Form to create a new issue -->
-                    <form>
+                    <form action="" method="POST">
                         <div class="form-group">
                             <label for="issueTitle">Title</label>
-                            <input type="text" class="form-control" id="issueTitle" required>
+                            <input type="text" class="form-control" name="title" id="issueTitle" required>
                         </div>
                         <div class="form-group">
                             <label for="issueDescription">Description</label>
-                            <textarea class="form-control" id="issueDescription" rows="3"></textarea>
+                            <textarea class="form-control" id="issueDescription" type="description" name="description" rows="3"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="issueTag">Tag</label>
-                            <input type="text" class="form-control" id="issueTag">
+                            <input type="text" class="form-control"  name="tag" id="issueTag">
                         </div>
                         <div class="form-group">
                             <label for="issueStatus">Status</label>
-                            <select class="form-control" id="issueStatus">
+                            <select class="form-control" id="issueStatus" type="status" name="status">
                                 <option value="created">Created</option>
                                 <option value="in-progress">In Progress</option>
                                 <option value="done">Done</option>
                             </select>
                         </div>
+                        <div class="modal-footer">
+                    
+                    <button button="submit" type="submit" class="btn btn-secondary" name = "submit" value="submit" data-dismiss="modal">Close</button>
+                    <button button="submit" type="submit" class="btn btn-primary" name = "submit" value="submit" >Save Issue</button>
+               
+            </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save Issue</button>
-                </div>
+             
             </div>
         </div>
     </div>
@@ -74,3 +100,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 </body>
 </html>
+
+
+

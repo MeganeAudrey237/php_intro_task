@@ -1,4 +1,6 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
 <style>
     /* Custom styles */
     body {
@@ -83,70 +85,53 @@
         color: #007bff;
     }
 </style>
-
 <div class="task-container">
-    <!-- Sample Issue 1 -->
-    <div class="task">
-        <div class="task-details">
-            <div class="task-title">Issue 1: Design Landing Page</div>
-            <div class="status status-in-progress">In Progress</div>
+<?php
+include "db.php";
+$sql = "SELECT * FROM tasks";
+$result = $conn -> query($sql);
+while($row = $result -> fetch_assoc()){
+    $id = $row['id'];
+    $title = $row['title'];
+    $description = $row['description'];
+    $tag = $row['tag'];
+    $status = $row['status'];
+?>
+    <div class='task'>  
+        <div class='task-details'>
+            <div class='task-title'>Issue <?php echo "$id:$title" ?></div>
+            <div class='status status-in-progress'> <?php echo $status; ?></div>
         </div>
         <div>
-            <span class="tag">UI</span>
-            <span class="tag">Design</span>
+            <span class='tag'><?php echo $tag ?></span>
+            <span class='tag'> <?php echo $tag?></span>
         </div>
-        <div class="progress">
-            <div class="progress-bar bg-danger" role="progressbar" style="width: 50%;" aria-valuenow="50"
-                aria-valuemin="0" aria-valuemax="100">50% Complete</div>
+        <div class='progress'>
+            <div class='progress-bar bg-danger' role='progressbar' style='width: 50%;' aria-valuenow='50'
+                aria-valuemin='0' aria-valuemax='100'>50% Complete</div>
         </div>
-        <div class="action-icons">
-            <i class="fas fa-edit icon-action" data-toggle="modal" data-target="#editIssueModal"></i>
-            <i class="fas fa-trash-alt icon-action" data-toggle="modal" data-target="#deleteIssueModal"></i>
-        </div>
-    </div>
-    <!-- Sample Issue 2 -->
-    <div class="task">
-        <div class="task-details">
-            <div class="task-title">Issue 2: Implement Create Task Feature</div>
-            <div class="status status-done">Done</div>
-        </div>
-        <div>
-            <span class="tag">Backend</span>
-            <span class="tag">Functionality</span>
-        </div>
-        <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100"
-                aria-valuemin="0" aria-valuemax="100">100% Complete</div>
-        </div>
-        <div class="action-icons">
-            <i class="fas fa-edit icon-action" data-toggle="modal" data-target="#editIssueModal"></i>
-            <i class="fas fa-trash-alt icon-action" data-toggle="modal" data-target="#deleteIssueModal"></i>
+        <div class='action-icons'>
+            <i class='fas fa-edit icon-action' data-toggle='modal' data-target='#editIssueModal'>  </i>
+            <button type="button"><i class='fas fa-trash-alt icon-action' data-toggle='modal' data-target='#deleteIssueModal-<?php echo $id ?>' >  </i> </button>
         </div>
     </div>
-    <!-- Sample Issue 3 -->
-    <div class="task">
-        <div class="task-details">
-            <div class="task-title">Issue 3: Add Delete Task Modal</div>
-            <div class="status status-created">Created</div>
-        </div>
-        <div>
-            <span class="tag">Frontend</span>
-            <span class="tag">Design</span>
-        </div>
-        <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 25%;" aria-valuenow="25"
-                aria-valuemin="0" aria-valuemax="100">25% Complete</div>
-        </div>
-        <div class="action-icons">
-            <i class="fas fa-edit icon-action" data-toggle="modal" data-target="#editIssueModal"></i>
-            <i class="fas fa-trash-alt icon-action" data-toggle="modal" data-target="#deleteIssueModal"></i>
-        </div>
-    </div>
-</div>
+   <?php 
+    include "deletemodal.php";
+include "edit.php";
+}
 
-<?php 
 
-include "deletemodal.php";
-include "edit.php"
+
 
 ?>
+
+
+
+
+   
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+
