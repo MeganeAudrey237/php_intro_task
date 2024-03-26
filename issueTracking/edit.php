@@ -43,7 +43,7 @@ include "db.php";
             color: black !important;
         }
  </style>       
-<div class="modal fade" id="editIssueModal-" tabindex="-1" role="dialog" aria-labelledby="editIssueModalLabel" aria-hidden="true">
+<div class="modal fade" id="editIssueModal-<?php echo $id?>" tabindex="-1" role="dialog" aria-labelledby="editIssueModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

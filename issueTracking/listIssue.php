@@ -111,19 +111,25 @@ while($row = $result -> fetch_assoc()){
                 aria-valuemin='0' aria-valuemax='100'>50% Complete</div>
         </div>
         <div class='action-icons'>
-            <i class='fas fa-edit icon-action' data-toggle='modal' data-target='#editIssueModal'>  </i>
-            <button type="button"><i class='fas fa-trash-alt icon-action' data-toggle='modal' data-target='#deleteIssueModal-<?php echo $id ?>' >  </i> </button>
+            <i class='fas fa-edit icon-action' data-toggle='modal' data-target='#editIssueModal-<?php echo $id?>'>  </i>
+            <button type="button"><i class='fas fa-trash-alt icon-action' data-toggle='modal' data-target='#deleteIssueModal-<?php echo $id?>' >  </i> </button>
         </div>
-    </div>
+   
    <?php 
     include "deletemodal.php";
 include "edit.php";
-}
-
-
-
 
 ?>
+ </div>
+ </div>
+<?php 
+}
+?>
+
+
+
+
+
 
 
 
